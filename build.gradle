@@ -32,9 +32,23 @@ configurations {
 }
 
 dependencies {
+	compile('org.apache.tomcat.embed:tomcat-embed-jasper')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-web-services')
-	compileOnly('org.projectlombok:lombok')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-jdbc')
+	compile('org.projectlombok:lombok')
+	compile('commons-dbcp:commons-dbcp:1.4')
+
+	compile('pl.allegro.tech.boot:handlebars-spring-boot-starter:0.2.12')
+	compile('com.github.jknack:handlebars-helpers:4.0.4')
+	compile('com.github.jknack:handlebars-jackson2:4.0.4')
+	compile('com.github.jknack:handlebars-humanize:4.0.4')
+	compile('com.github.jknack:handlebars-markdown:4.0.4')
+
+	runtime('org.hsqldb:hsqldb')
+	runtime('mysql:mysql-connector-java')
+
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
