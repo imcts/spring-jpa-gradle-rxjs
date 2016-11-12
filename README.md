@@ -3,3 +3,7 @@
 # JPA 
 # Reactive JS
 # React JS
+
+
+#npm start
+#spring boot run gradle. 
