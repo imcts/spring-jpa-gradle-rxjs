@@ -12,15 +12,12 @@ const refreshBtn = document.createElement('button');
 refreshBtn.innerText = 'refresh';
 $container.append(refreshBtn);
 
-//일단은 임시로 Spring Server 보도록 구성
-const server = 'http://local.coupang.com:8080';
-
 //create refresh Stream
 //구독자 수만큼 subscribe 하기 때문에 3번의 request 발생.
-const refreshClickStream = fromEvent(refreshBtn, 'click').map(() => server + '/todos');
+const refreshClickStream = fromEvent(refreshBtn, 'click').map(() => '/todos');
 
 //create start Stream
-const startupRequestStream = just(server + '/todos'); //onNext -> onCompleted
+const startupRequestStream = just('/todos'); //onNext -> onCompleted
 
 //merge stream
 const mergeStream = startupRequestStream

@@ -23,6 +23,7 @@ public class HomeController {
     @RequestMapping("/")
     public ModelAndView home() {
         ModelAndView mav = new ModelAndView("home/index");
+        mav.addObject("controller", "home");
         return mav;
     }
 

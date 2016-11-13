@@ -1,41 +1,106 @@
-var webpack = require('webpack');
+import webpack, { optimize, HotModuleReplacementPlugin, NoErrorsPlugin, DefinePlugin } from 'webpack';
+import glob    from 'glob';
+import ExtractTextPlugin  from 'extract-text-webpack-plugin';
+import Es3ifyPlugin from 'es3ify-webpack-plugin';
+import FlowtypePlugin from 'flowtype-loader/plugin';
 
-var HOST = 'localhost';
-var PORT = 3000;
-var ROOT_PATH = __dirname;
-var RESOURCES_PATH = ROOT_PATH + '/src/main/webapp/WEB-INF/resources/';
-var JS_PATH = RESOURCES_PATH + 'js/';
-var BUNDLE_PATH = JS_PATH + 'bundle/';
+import {
+    HOST,
+    DEV_PORT,
+    RESOURCE_PATH,
+    BUNDLE_PATH,
+    JS_PATH,
+    CONTROLLER_PATH
+} from './gulp.config.js';
 
+const { UglifyJsPlugin, OccurenceOrderPlugin } = optimize;
 
-module.exports = {
-    entry: `${JS_PATH}home/controller.js`,
+const regExps = {
+    '.js': new RegExp('\/controller.js$'),
+    '.scss': new RegExp('\/[^_]+scss$')
+};
 
+const getFileList = (pattern, remove, extension) => {
+    let isBundle = regExps[extension];
+    let files    = glob.sync(pattern, {'nodir': true});
+    let r        = [];
+
+    for(let i = 0, v; v = files[i]; i++) {
+        v = v.replace(remove, '');
+
+        if(isBundle.test(v))
+            r.push(v);
+    }
+
+    return r;
+};
+
+const getEntry = (list) => {
+    let entry = {};
+
+    for(let i = 0, v; v = list[i]; i++)
+        entry[v.replace('/js/', '').replace('/controller.js', '')] = [
+            'webpack/hot/dev-server',
+            `webpack-hot-middleware/client?path=${HOST}:${DEV_PORT}/__webpack_hmr`,
+            `.${v}`
+        ];
+
+    return entry;
+};
+
+//development entry
+export const CONTROLLERS = (() => getEntry(getFileList(CONTROLLER_PATH, RESOURCE_PATH, '.js')))();
+
+//DEVELOPMENT WEBPACK OPTION
+export const WEBPACK_DEVELOPMENT_CONFIG = {
+    target: 'web',
+    context: RESOURCE_PATH,
     devtool: 'source-map',
     cache: true,
     debug: true,
 
-    contentBase: JS_PATH,
+    //externals: Object.keys(REQUIRE_JS_PATH_OBJECT),
 
     output: {
         path: '/',
         publicPath: '/',
-        filename: 'bundle.js'
+        filename: '[name]/bundle.min.js'
+        //libraryTarget: 'amd'
     },
+
+    resolve: {
+        alias: {
+            'app': `${JS_PATH}`
+        }
+    },
+
     module: {
         loaders: [
             {
                 test: /\.js$/,
-                loaders: ['babel']
+                exclude: /node_modules/,
+                loader: 'babel'
+            },
+
+            {
+                test: /\.scss$/,
+                loaders: [
+                    'style',
+                    'css',
+                    'sass'
+                ]
             }
         ]
     },
-    watch: true,
-    progress: true,
-    devServer: {
-        host: HOST,
-        port: PORT,
-        contentBase: JS_PATH,
-        inline: true
-    }
+
+    plugins: [
+        new HotModuleReplacementPlugin(),
+        new NoErrorsPlugin(),
+        new FlowtypePlugin(),
+        new DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('development')
+            }
+        })
+    ]
 };
