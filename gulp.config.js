@@ -1,4 +1,4 @@
-export const HOST                   = 'http://local.coupang.com';
+export const HOST                   = 'http://localhost';
 export const TOMCAT_PORT            = '8080';
 export const DEV_PORT               = '3000';
 
