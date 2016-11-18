@@ -93,6 +93,10 @@ export const WEBPACK_DEVELOPMENT_CONFIG = {
         ]
     },
 
+    alias: {
+        'common': `${RESOURCE_PATH}/js/common/`
+    },
+
     plugins: [
         new HotModuleReplacementPlugin(),
         new NoErrorsPlugin(),

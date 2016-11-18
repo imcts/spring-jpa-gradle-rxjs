@@ -10,15 +10,9 @@
             "plugins": [
                 "transform-es3-member-expression-literals",
                 "transform-es3-property-literals",
-                "react-hot-loader/babel"
+                "react-hot-loader/babel",
+                "transform-decorators-legacy"
             ]
-        },
-
-        "production": {
-            "plugins": [
-                  "transform-es3-member-expression-literals",
-                  "transform-es3-property-literals"
-                ]
-            }
+        }
     }
 }

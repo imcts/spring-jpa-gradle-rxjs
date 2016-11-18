@@ -4,3 +4,20 @@ html, body {
     width: 100%;
     height: 100%;
 }
+
+.todo {
+}
+
+.todo-id {
+    display: inline-block;
+    width: 30px;
+    padding: 5px;
+    border: 1px solid #000;
+}
+
+.todo-content {
+    display: inline-block;
+    width: 100px;
+    padding: 5px;
+    border: 1px solid #000;
+}

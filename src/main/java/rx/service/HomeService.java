@@ -18,9 +18,11 @@ public class HomeService {
     private TodoMapper mapper;
 
     public List<Todos> getTodos() {
-
         List<Todos> list = this.mapper.findAll();
-
         return list;
+    }
+
+    public Todos addTodos(Todos todo) {
+        return this.mapper.save(todo);
     }
 }
