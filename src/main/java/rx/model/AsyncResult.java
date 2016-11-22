@@ -10,10 +10,11 @@ import lombok.Data;
 public class AsyncResult<T> {
     private T result;
 
-    public static <T> AsyncResult<T> done(T result) {
-        AsyncResult<T> asyncResult = new AsyncResult<T>();
-        asyncResult.setResult(result);
+    public AsyncResult(T r) {
+        this.result = r;
+    }
 
-        return asyncResult;
+    public static <T> AsyncResult<T> done(T result) {
+        return new AsyncResult<T>(result);
     }
 }
