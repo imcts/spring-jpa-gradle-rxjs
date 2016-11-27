@@ -1,3 +1,6 @@
+import Rx, { Observable } from 'rx';
+const { fromPromise, fromEvent, just } = Observable;
+
 import Enum from 'common/modules/enum';
 
 export const ACTIONS = new Enum(
@@ -7,24 +10,8 @@ export const ACTIONS = new Enum(
     'UPDATE_TODO_LIST'
 );
 
-//action payload
-const getTodoAction = ({ result }) => ({
-    type: ACTIONS.GET_TODO_LIST,
-    payload: result
-});
-
-const addTodoAction = ({ result }) => ({
-    type: ACTIONS.ADD_TODO_LIST,
-    payload: result
-});
-
-const deleteTodoAction = ({ result }) => ({
-    type: ACTIONS.DELETE_TODO_LIST,
-    payload: result
-});
-
-const updateTodoAction = ({ result }) => ({
-    type: ACTIONS.UPDATE_TODO_LIST,
+const asyncAction = type => ({ result }) => ({
+    type,
     payload: result
 });
 
@@ -40,7 +27,7 @@ export const updateTodo = (id, content) => (dispatch, getState, { PUT }) => {
         params
     )
     .then(({ data }) => {
-        dispatch(updateTodoAction(data));
+        dispatch(asyncAction(ACTIONS.UPDATE_TODO_LIST)(data));
     });
 };
 
@@ -55,7 +42,7 @@ export const deleteTodo = id => (dispatch, getState, { DELETE }) => {
         params
     )
     .then(({ data }) => {
-        dispatch(deleteTodoAction(data));
+        dispatch(asyncAction(ACTIONS.DELETE_TODO_LIST)(data));
     });
 };
 
@@ -70,7 +57,7 @@ export const saveTodo = content => (dispatch, getState, { POST }) => {
         params
     )
     .then(({ data }) => {
-        dispatch(addTodoAction(data));
+        dispatch(asyncAction(ACTIONS.ADD_TODO_LIST)(data));
     });
 };
 
@@ -79,6 +66,6 @@ export const getTodos = () => (dispatch, getState, { GET }) => {
 
     GET(url)
     .then(({ data }) => {
-        dispatch(getTodoAction(data));
+        dispatch(asyncAction(ACTIONS.GET_TODO_LIST)(data));
     });
 };

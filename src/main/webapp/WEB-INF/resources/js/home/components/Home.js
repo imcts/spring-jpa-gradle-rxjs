@@ -1,23 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Rx, { Observable } from 'rx';
-const { fromPromise, fromEvent, just } = Observable;
-
-import { getTodos, saveTodo, deleteTodo, updateTodo } from '../actions';
+import * as homeActions from '../actions';
 
 import TodoList from './TodoList';
-
 
 const stateToProps = state => ({
     homeReducer: state.homeReducer
 });
 
 const actionToProps = {
-    getTodos,
-    saveTodo,
-    deleteTodo,
-    updateTodo
+    ...homeActions
 };
 
 @connect(stateToProps, actionToProps)
