@@ -56,7 +56,12 @@ export default class Home extends Component {
         return (
             <div className="todo">
                 <input type="text" onKeyDown={e => this.addTodoList(e)}/>
-                <TodoList { ...this.props.homeReducer } doDelete={id => this.doDelete(id)} doUpdate={(e, id) => this.doUpdate(e, id)} />
+
+                <TodoList
+                    { ...this.props.homeReducer }
+                    doDelete={id => this.doDelete(id)}
+                    doUpdate={(e, id) => this.doUpdate(e, id)}
+                />
             </div>
         );
     }
