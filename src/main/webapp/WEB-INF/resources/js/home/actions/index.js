@@ -1,27 +1,30 @@
-export const GET_TODO_LIST    = 'home/GET_TODO_LIST';
-export const ADD_TODO_LIST    = 'home/ADD_TODO_LIST';
-export const DELETE_TODO_LIST = 'home/DELETE_TODO_LIST';
-export const UPDATE_TODO_LIST = 'home/UPDATE_TODO_LIST';
+import Enum from 'common/modules/enum';
 
+export const ACTIONS = new Enum(
+    'GET_TODO_LIST',
+    'ADD_TODO_LIST',
+    'DELETE_TODO_LIST',
+    'UPDATE_TODO_LIST'
+);
 
 //action payload
 const getTodoAction = ({ result }) => ({
-    type: GET_TODO_LIST,
+    type: ACTIONS.GET_TODO_LIST,
     payload: result
 });
 
 const addTodoAction = ({ result }) => ({
-    type: ADD_TODO_LIST,
+    type: ACTIONS.ADD_TODO_LIST,
     payload: result
 });
 
 const deleteTodoAction = ({ result }) => ({
-    type: DELETE_TODO_LIST,
+    type: ACTIONS.DELETE_TODO_LIST,
     payload: result
 });
 
 const updateTodoAction = ({ result }) => ({
-    type: UPDATE_TODO_LIST,
+    type: ACTIONS.UPDATE_TODO_LIST,
     payload: result
 });
 

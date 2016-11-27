@@ -48,6 +48,8 @@ const getEntry = (list) => {
     return entry;
 };
 
+console.log(RESOURCE_PATH, ' : RESOURCES PATH');
+
 //development entry
 export const CONTROLLERS = (() => getEntry(getFileList(CONTROLLER_PATH, RESOURCE_PATH, '.js')))();
 
@@ -92,8 +94,10 @@ export const WEBPACK_DEVELOPMENT_CONFIG = {
         ]
     },
 
-    alias: {
-        'common': `${RESOURCE_PATH}/js/common/`
+    resolve: {
+        alias: {
+            'common': `${RESOURCE_PATH}/js/common/`
+        }
     },
 
     plugins: [

@@ -5,7 +5,7 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import reducers from '../reducers';
 
 //thunk
-import thunk from '../../common/modules/thunk';
+import thunk from 'common/modules/thunk';
 
 //create store
 export default createStore(

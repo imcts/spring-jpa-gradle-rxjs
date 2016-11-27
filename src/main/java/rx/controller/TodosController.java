@@ -39,5 +39,4 @@ public class TodosController {
     public AsyncResult<Todos> deleteTodo(@RequestBody Todos todo) {
         return AsyncResult.done(this.service.deleteTodo(todo));
     }
-
 }

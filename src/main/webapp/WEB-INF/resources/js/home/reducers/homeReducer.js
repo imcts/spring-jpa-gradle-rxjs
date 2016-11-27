@@ -1,4 +1,4 @@
-import { GET_TODO_LIST, ADD_TODO_LIST, DELETE_TODO_LIST, UPDATE_TODO_LIST } from '../actions';
+import { ACTIONS } from '../actions';
 
 const initialState = {
     todos: []
@@ -8,7 +8,7 @@ export default (state = initialState, { type, payload }) => {
 
 
     switch(type) {
-        case ADD_TODO_LIST:
+        case ACTIONS.ADD_TODO_LIST:
             state.todos.push({
                 ...payload
             });
@@ -17,19 +17,19 @@ export default (state = initialState, { type, payload }) => {
                 ...state
             };
 
-        case GET_TODO_LIST:
+        case ACTIONS.GET_TODO_LIST:
             return {
                 ...state,
                 todos: payload
             };
 
-        case DELETE_TODO_LIST:
+        case ACTIONS.DELETE_TODO_LIST:
             return {
                 ...state,
                 todos: state.todos.filter(o => o.id !== payload.id)
             };
 
-        case UPDATE_TODO_LIST:
+        case ACTIONS.UPDATE_TODO_LIST:
             return {
                 ...state
             };
