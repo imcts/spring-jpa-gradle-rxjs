@@ -2,7 +2,7 @@ package rx.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rx.mapper.TodoMapper;
+import rx.mapper.TodosRepository;
 import rx.mapper.Todos;
 
 import java.util.List;
@@ -15,14 +15,24 @@ import java.util.List;
 public class HomeService {
 
     @Autowired
-    private TodoMapper mapper;
+    private TodosRepository repository;
 
-    public List<Todos> getTodos() {
-        List<Todos> list = this.mapper.findAll();
+    public List<Todos> getTodoList() {
+        List<Todos> list = this.repository.findAll();
         return list;
     }
 
-    public Todos addTodos(Todos todo) {
-        return this.mapper.save(todo);
+    public Todos registerTodo(Todos todo) {
+        return this.repository.save(todo);
+    }
+
+
+    public Todos updateTodo(Todos todo) {
+        return this.repository.save(todo);
+    }
+
+    public Todos deleteTodo(Todos todo) {
+        this.repository.delete(todo);
+        return todo;
     }
 }

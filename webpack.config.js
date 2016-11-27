@@ -40,7 +40,7 @@ const getEntry = (list) => {
 
     for(let i = 0, v; v = list[i]; i++)
         entry[v.replace('/js/', '').replace('/controller.js', '')] = [
-            'webpack/hot/dev-server',
+            `webpack/hot/dev-server`,
             `webpack-hot-middleware/client?path=${HOST}:${DEV_PORT}/__webpack_hmr`,
             `.${v}`
         ];
@@ -83,11 +83,10 @@ export const WEBPACK_DEVELOPMENT_CONFIG = {
             },
 
             {
-                test: /\.scss$/,
+                test: /\.css$/,
                 loaders: [
                     'style',
-                    'css',
-                    'sass'
+                    'css'
                 ]
             }
         ]

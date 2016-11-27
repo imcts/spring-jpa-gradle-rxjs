@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Rx, { Observable } from 'rx';
 const { fromPromise, fromEvent, just } = Observable;
 
-import { getTodos, saveTodo } from '../actions';
+import { getTodos, saveTodo, deleteTodo, updateTodo } from '../actions';
 
 import TodoList from './TodoList';
 
@@ -15,7 +15,9 @@ const stateToProps = state => ({
 
 const actionToProps = {
     getTodos,
-    saveTodo
+    saveTodo,
+    deleteTodo,
+    updateTodo
 };
 
 @connect(stateToProps, actionToProps)
@@ -32,21 +34,36 @@ export default class Home extends Component {
         if(e.keyCode !== 13)
             return;
 
+        const target = e.target,
+              value  = target.value;
 
-        const value = e.target.value;
-
-        console.log(value);
+        if(value === '')
+            return;
 
         this.props.saveTodo && this.props.saveTodo(value);
 
-        e.target.value = '';
+        target.value = '';
+    }
+
+    doDelete(id) {
+        this.props.deleteTodo && this.props.deleteTodo(id);
+    }
+
+    doUpdate(e, id) {
+        if(e.keyCode !== 13)
+            return;
+
+        const target = e.target,
+              value  = target.value;
+
+        this.props.updateTodo && this.props.updateTodo(id, value);
     }
 
     render() {
         return (
             <div className="todo">
                 <input type="text" onKeyDown={e => this.addTodoList(e)}/>
-                <TodoList { ...this.props.homeReducer } />
+                <TodoList { ...this.props.homeReducer } doDelete={id => this.doDelete(id)} doUpdate={(e, id) => this.doUpdate(e, id)} />
             </div>
         );
     }

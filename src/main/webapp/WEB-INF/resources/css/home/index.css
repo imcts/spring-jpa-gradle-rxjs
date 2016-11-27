@@ -17,7 +17,12 @@ html, body {
 
 .todo-content {
     display: inline-block;
-    width: 100px;
     padding: 5px;
     border: 1px solid #000;
+}
+
+.todo-delete {
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
 }

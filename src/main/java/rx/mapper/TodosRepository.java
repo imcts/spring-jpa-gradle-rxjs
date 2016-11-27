@@ -8,4 +8,4 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public interface TodoMapper extends JpaRepository<Todos, Integer> {}
+public interface TodosRepository extends JpaRepository<Todos, Integer> {}

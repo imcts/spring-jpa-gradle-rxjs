@@ -8,12 +8,12 @@ export default class TodoList extends Component {
     }
 
     render() {
-        const { todos } = this.props;
+        const { todos, doDelete, doUpdate } = this.props;
 
         return (
             <div className="todo">
                 {
-                    todos.map((o, i) => <Todo key={ i } { ...o }/>)
+                    todos.map((o, i) => <Todo key={ i } { ...o } doDelete={doDelete} doUpdate={doUpdate}/>)
                 }
             </div>
         );
