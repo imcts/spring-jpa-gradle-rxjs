@@ -28,7 +28,6 @@ const updateTodoAction = ({ result }) => ({
     payload: result
 });
 
-
 export const updateTodo = (id, content) => (dispatch, getState, { PUT }) => {
     const url    = '/todos',
           params = {
@@ -41,7 +40,6 @@ export const updateTodo = (id, content) => (dispatch, getState, { PUT }) => {
         params
     )
     .then(({ data }) => {
-        console.log(data, ' : async done');
         dispatch(updateTodoAction(data));
     });
 };
