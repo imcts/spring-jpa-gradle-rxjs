@@ -6,7 +6,7 @@ export default class Todo extends Component {
     }
 
     render() {
-        const { id, content, doDelete, doUpdate } = this.props;
+        const { id, content, doDelete, doUpdate, member } = this.props;
 
         return (
             <div>
@@ -14,6 +14,9 @@ export default class Todo extends Component {
                 <span className="todo-content">
                     <input type="type" defaultValue={ content } onKeyDown={ e => doUpdate(e, id) } />
                 </span>
+                {
+                    member ? <span className="todo-name">{ member.name }</span> : ''
+                }
                 <span className="todo-delete" onClick={e => doDelete(id)}>x</span>
             </div>
         );

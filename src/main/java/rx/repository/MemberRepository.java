@@ -1,4 +1,4 @@
-package rx.mapper;
+package rx.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
@@ -8,4 +8,4 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public interface TodosRepository extends JpaRepository<Todos, Integer> {}
+public interface MemberRepository extends JpaRepository<Member, Integer> {}
