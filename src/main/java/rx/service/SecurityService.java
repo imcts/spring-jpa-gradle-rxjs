@@ -50,12 +50,15 @@ public class SecurityService implements UserDetailsService { //이 서비스 하
     }
 
     public void setAutoLogin(String username, String password) { //로그인 유저 등록하기
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username); //get User
+
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
+        //User Name and Password setting
 
         this.authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+        //인증 매니저에 Token 저장
 
         if (usernamePasswordAuthenticationToken.isAuthenticated())
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken); //set Auto Login
+            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken); //context의 Auth 정보에 Token 저장
     }
 }
