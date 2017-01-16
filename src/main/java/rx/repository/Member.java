@@ -23,7 +23,5 @@ public class Member {
 
     private String name;
 
-//    @OneToMany
-//    @JoinColumn(name = "memberId")
-//    private Collection<Todos> todos;
+    private String password;
 }

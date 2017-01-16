@@ -2,6 +2,7 @@ package rx.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import rx.repository.Member;
 import rx.repository.MemberRepository;
 import rx.repository.Todos;
 import rx.repository.TodosRepository;
@@ -21,18 +22,27 @@ public class HomeService {
     @Autowired
     private MemberRepository memberRepository;
 
+    @Autowired
+    private SecurityService securityService;
 
     private final Integer dolenId = 1;
 
     public List<Todos> getTodoList() {
-        return this.todoRepository.findAll();
+        String name = securityService.findLoggedInUsername();
+        Member member = this.memberRepository.findByName(name);
+        return this.todoRepository.findByMemberId(member.getId());
     }
 
     public Todos registerTodo(Todos todo) {
-        return this.todoRepository.save(todo.setMember(memberRepository.findOne(dolenId)));
+        String name = securityService.findLoggedInUsername();
+        Member member = this.memberRepository.findByName(name);
+        return this.todoRepository.save(todo.setMember(member));
     }
 
     public Todos updateTodo(Todos todo) {
+        String name = securityService.findLoggedInUsername();
+        Member member = this.memberRepository.findByName(name);
+        todo.setMember(member);
         return this.todoRepository.save(todo);
     }
 
