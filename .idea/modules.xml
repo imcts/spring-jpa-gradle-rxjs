@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/rx-study.iml" filepath="$PROJECT_DIR$/rx-study.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rx-study.iml" filepath="$PROJECT_DIR$/.idea/modules/rx-study.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rx-study_main.iml" filepath="$PROJECT_DIR$/.idea/modules/rx-study_main.iml" group="rx-study" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rx-study_test.iml" filepath="$PROJECT_DIR$/.idea/modules/rx-study_test.iml" group="rx-study" />
     </modules>
   </component>
 </project>
