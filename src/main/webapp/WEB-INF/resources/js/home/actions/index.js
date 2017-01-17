@@ -1,4 +1,3 @@
-import Rx, { Observable } from 'rx';
 const { fromPromise, fromEvent, just } = Observable;
 
 import Enum from 'common/modules/enum';
