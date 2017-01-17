@@ -39,10 +39,10 @@ const getEntry = (list) => {
     let entry = {};
 
     for(let i = 0, v; v = list[i]; i++)
-        entry[v.replace('/js', '').replace('/controller.js', '')] = [
+        entry[v.replace('/js/', '').replace('/controller.js', '')] = [
             `webpack/hot/dev-server`,
             `webpack-hot-middleware/client?path=${HOST}:${DEV_PORT}/__webpack_hmr`,
-            `${v}`
+            `.${v}`
         ];
 
     return entry;
