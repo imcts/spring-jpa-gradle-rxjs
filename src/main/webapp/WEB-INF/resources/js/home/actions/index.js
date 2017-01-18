@@ -1,5 +1,3 @@
-const { fromPromise, fromEvent, just } = Observable;
-
 import Enum from 'common/modules/enum';
 
 export const ACTIONS = new Enum(

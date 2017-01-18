@@ -38,17 +38,23 @@ const getFileList = (pattern, remove, extension) => {
 const getEntry = (list) => {
     let entry = {};
 
-    for(let i = 0, v; v = list[i]; i++)
-        entry[v.replace('/js/', '').replace('/controller.js', '')] = [
+    for(let i = 0, key, file, v; v = list[i]; i++) {
+        file = v.replace('/js', '');
+        key  = file.replace('/controller.js', '');
+        entry[key] = [
             `webpack/hot/dev-server`,
             `webpack-hot-middleware/client?path=${HOST}:${DEV_PORT}/__webpack_hmr`,
-            `.${v}`
+            `${RESOURCE_PATH + v}`
         ];
+
+        console.log(v);
+    }
+
+    console.log(entry);
 
     return entry;
 };
 
-console.log(RESOURCE_PATH, ' : RESOURCES PATH');
 
 //development entry
 export const CONTROLLERS = (() => getEntry(getFileList(CONTROLLER_PATH, RESOURCE_PATH, '.js')))();
