@@ -47,10 +47,7 @@ const getEntry = (list) => {
             `${RESOURCE_PATH + v}`
         ];
 
-        console.log(v);
     }
-
-    console.log(entry);
 
     return entry;
 };

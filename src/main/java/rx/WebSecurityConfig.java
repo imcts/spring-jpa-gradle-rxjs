@@ -17,6 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -25,9 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
             .authorizeRequests()
-                .antMatchers("/resources/**", "/login", "/").permitAll() //resources 는 권한 허용
-                .anyRequest().authenticated(); //모든 request는 인증 설정
-
+                .antMatchers("/resources/**", "/login", "/").permitAll()
+                .anyRequest().authenticated();
 
         http
             .formLogin()

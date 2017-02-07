@@ -38,7 +38,15 @@ public class IndexController {
     @RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
     public String login(@RequestParam String name, @RequestParam String password) {
         //do auto login
-        this.securityService.setAutoLogin(name, password);
+        try {
+
+            this.securityService.setAutoLogin(name, password);
+
+        } catch (Exception e) {
+
+            System.out.println("login fail!!!");
+
+        }
 
         return "redirect:/home";
     }

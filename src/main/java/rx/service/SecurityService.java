@@ -37,7 +37,7 @@ public class SecurityService implements UserDetailsService { //이 서비스 하
         if(member == null)
             throw new UsernameNotFoundException("user not found name is " + name);
 
-        return new User(member.getName(), member.getPassword(), AuthorityUtils.createAuthorityList("ROLE_USER"));
+        return new User(member.getName(), member.getPassword(), AuthorityUtils.createAuthorityList("USER"));
     }
 
     public String findLoggedInUsername() { //로그인 유저 이름 찾기
@@ -57,6 +57,7 @@ public class SecurityService implements UserDetailsService { //이 서비스 하
 
         this.authenticationManager.authenticate(usernamePasswordAuthenticationToken);
         //인증 매니저에 Token 저장
+        //스프링 시큐리티가 이놈을 가지고 인증된건지 안된건지 판단
 
         if (usernamePasswordAuthenticationToken.isAuthenticated())
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken); //context의 Auth 정보에 Token 저장
