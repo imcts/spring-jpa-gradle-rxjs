@@ -50,4 +50,10 @@ public class IndexController {
 
         return "redirect:/home";
     }
+
+    @RequestMapping("/video")
+    public ModelAndView video() {
+        ModelAndView mav = new ModelAndView("/video");
+        return mav;
+    }
 }
