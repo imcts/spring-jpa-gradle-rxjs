@@ -10,6 +10,4 @@ import { CONTROLLERS, WEBPACK_DEVELOPMENT_CONFIG } from './webpack.config.js';
 ////////////////////////////////////////////////////////////////////////////////
 //----------------------------- DEV-BUILD ----------------------------------/
 ////////////////////////////////////////////////////////////////////////////////
-gulp.task('dev-server', () => {
-    DEV_SERVER(CONTROLLERS)
-});
+gulp.task('dev-server', () => DEV_SERVER(CONTROLLERS));
